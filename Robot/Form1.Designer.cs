@@ -76,11 +76,11 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(131, 468);
+            this.button4.Location = new System.Drawing.Point(131, 452);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(94, 28);
+            this.button4.Size = new System.Drawing.Size(94, 44);
             this.button4.TabIndex = 4;
-            this.button4.Text = "试验机位置";
+            this.button4.Text = "试验机位置btn4";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -89,7 +89,7 @@
             this.pictureBox2.BackColor = System.Drawing.Color.Teal;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(806, 301);
+            this.pictureBox2.Location = new System.Drawing.Point(806, 300);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(150, 139);
             this.pictureBox2.TabIndex = 7;
@@ -103,7 +103,6 @@
             this.button5.TabIndex = 4;
             this.button5.Text = "测量台位置";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button4_Click);
             // 
             // button6
             // 
@@ -113,7 +112,6 @@
             this.button6.TabIndex = 4;
             this.button6.Text = "打标机位置";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button4_Click);
             // 
             // button7
             // 
@@ -123,7 +121,6 @@
             this.button7.TabIndex = 4;
             this.button7.Text = "1-3试样架位置";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button4_Click);
             // 
             // button8
             // 
@@ -133,7 +130,6 @@
             this.button8.TabIndex = 4;
             this.button8.Text = "4-6试样架位置";
             this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button4_Click);
             // 
             // button9
             // 
@@ -143,7 +139,7 @@
             this.button9.TabIndex = 4;
             this.button9.Text = "回收架位置";
             this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button4_Click);
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // timerA
             // 

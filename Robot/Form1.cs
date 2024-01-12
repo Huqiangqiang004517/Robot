@@ -24,16 +24,13 @@ namespace Robot
         private float Y;
         public float X1 { get => X; set => X = value; }
         public float Y1 { get => Y; set => Y = value; }
-        private int curentPostion = 0;
-
+        private int rotationAngle = 0;
         private const int testingMachinePosition = 0;//试验机位置
         private const int MeasurementStationPosition = 45;//测量台架子
         private const int ezcad = 90;//打标机架子
         private const int Sample1 = 120; //1-3试样架子
         private const int Sample4 = 180;//4-6试样架子
         private const int WasteRackLocation = -90;//废料架子
-
-        private int currentImageIndex = 1;
         // 定义一个状态对象
         public class RobotState
         {
@@ -108,10 +105,8 @@ namespace Robot
                     SetTag(con);
             }
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
-
             //=======================窗体缩放===============================================================
             //按键等比例缩放，注册到窗口Resize事件中
             this.Resize += new EventHandler(MainForm_Resize);
@@ -126,8 +121,6 @@ namespace Robot
             SetControls(newx, newy, this);
             //=======================窗体缩放===============================================================
         }
-      
-  
         private void button1_Click(object sender, EventArgs e)
         {
             robot = new RobotUDP(8011);
@@ -140,10 +133,8 @@ namespace Robot
         {
             // 处理接收到的消息
             // 在这里可以更新 UI 或执行其他逻辑
-            MessageBox.Show($"Received message: {e.Message} from {e.RemoteEndPoint}");
-            //robotState = JsonConvert.DeserializeObject<RobotState>(e.Message);
-            //MessageBox.Show(robotState.State0.ToString());
-           
+            //MessageBox.Show($"Received message: {e.Message} from {e.RemoteEndPoint}");
+            robotState = JsonConvert.DeserializeObject<RobotState>(e.Message);
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -155,16 +146,13 @@ namespace Robot
             }
             timerA.Stop();
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             if (robotSend != null)
             {
                 robotSend.SendMessage("深圳三思纵横科技股份有限公司SUNS", "127.0.0.1");
             }     
-            
         }
-      
         private void button4_Click(object sender, EventArgs e)
         {
             //  将对象序列化为JSON字符串
@@ -179,16 +167,6 @@ namespace Robot
             rotationAngle = 180;
             RotateImage(rotationAngle);
             robotState.State13 = true;
-           
-
-        }
-
-      
-
-        private int rotationAngle = 0;
-        private void pictureBox2_Paint(object sender, PaintEventArgs e)
-        {
-          
         }
         private void RotateImage(float angle)
         {
@@ -207,7 +185,11 @@ namespace Robot
                 g.TranslateTransform(-(float)rotatedBitmap.Width / 2, -(float)rotatedBitmap.Height / 2); // 将坐标原点移回左上角
                 g.DrawImage(bitmap, new Point(0, 0));
             }
+            pictureBox2.Image.Dispose();
             pictureBox2.Image = rotatedBitmap;
+            // 释放旧的Bitmap对象
+            bitmap.Dispose();
+            //rotatedBitmap.Dispose();因为pictureBox2.Image正在使用rotatedBitmap，所以不能释放。
         }
 
         private void TimeA_time(object sender, EventArgs e)
@@ -293,6 +275,11 @@ namespace Robot
                 }
                 RotateImage(rotationAngle);
             }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            RotateImage(90);
         }
     }
 }
